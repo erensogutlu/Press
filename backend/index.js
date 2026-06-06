@@ -12,8 +12,20 @@ const uygulama = express();
 const port = process.env.PORT || 5000;
 
 // güvenlik: cors en üstte olmalı (preflight istekleri için)
+const izinVerilenOriginler = [
+  'http://localhost:5173',
+  'https://press-beta-roan.vercel.app',
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
 uygulama.use(cors({
-  origin: 'http://localhost:5173', // geliştirme ortamı
+  origin: (origin, callback) => {
+    if (!origin || izinVerilenOriginler.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS politikası tarafından engellendi'));
+    }
+  },
   credentials: true
 }));
 
