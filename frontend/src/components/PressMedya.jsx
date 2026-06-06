@@ -9,7 +9,7 @@ const PressMedya = () => {
   React.useEffect(() => {
     const medyayiGetir = async () => {
       try {
-        const yanit = await axios.get('http://localhost:5000/api/medya');
+        const yanit = await axios.get('/api/medya');
         setVideolar(yanit.data);
       } catch (hata) {
         console.error('medya yüklenemedi:', hata);

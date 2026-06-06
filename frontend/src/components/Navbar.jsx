@@ -17,8 +17,8 @@ const Navbar = () => {
     const verileriGetir = async () => {
       try {
         const [katYanit, habYanit] = await Promise.all([
-          axios.get('http://localhost:5000/api/kategoriler'),
-          axios.get('http://localhost:5000/api/haberler')
+          axios.get('/api/kategoriler'),
+          axios.get('/api/haberler')
         ]);
         setKategoriler(katYanit.data);
         

@@ -17,7 +17,7 @@ const Kayit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const yanit = await axios.post('http://localhost:5000/api/kayit', { isim, eposta, sifre });
+      const yanit = await axios.post('/api/kayit', { isim, eposta, sifre });
       giris(yanit.data);
       navigate('/');
     } catch (hata) {

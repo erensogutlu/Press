@@ -13,7 +13,7 @@ const Bildirimler = () => {
   useEffect(() => {
     const verileriGetir = async () => {
       try {
-        const yanit = await axios.get('http://localhost:5000/api/haberler');
+        const yanit = await axios.get('/api/haberler');
         setHaberler(yanit.data);
         
         // sayfaya bakıldığında en son haberin ID'sini "görüldü" olarak kaydet

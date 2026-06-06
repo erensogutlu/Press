@@ -39,12 +39,12 @@ const AdminPanel = () => {
     const verileriGetir = async () => {
       try {
         const [istYanit, kulYanit, katYanit, habYanit, kyYanit, medYanit] = await Promise.all([
-          axios.get('http://localhost:5000/api/admin/istatistikler'),
-          axios.get('http://localhost:5000/api/admin/kullanicilar'),
-          axios.get('http://localhost:5000/api/kategoriler'),
-          axios.get('http://localhost:5000/api/haberler'),
-          axios.get('http://localhost:5000/api/kose-yazilari'),
-          axios.get('http://localhost:5000/api/medya')
+          axios.get('/api/admin/istatistikler'),
+          axios.get('/api/admin/kullanicilar'),
+          axios.get('/api/kategoriler'),
+          axios.get('/api/haberler'),
+          axios.get('/api/kose-yazilari'),
+          axios.get('/api/medya')
         ]);
         setIstatistikler(istYanit.data);
         setKullanicilar(kulYanit.data);
@@ -68,10 +68,10 @@ const AdminPanel = () => {
 
     try {
       if (duzenlemeModu) {
-        await axios.put(`http://localhost:5000/api/haberler/${duzenlenenId}`, haberForm);
+        await axios.put(`/api/haberler/${duzenlenenId}`, haberForm);
         setMesaj({ tip: 'basari', icerik: 'Haber başarıyla güncellendi!' });
       } else {
-        await axios.post('http://localhost:5000/api/admin/haber-paylas', haberForm);
+        await axios.post('/api/admin/haber-paylas', haberForm);
         setMesaj({ tip: 'basari', icerik: 'Haber başarıyla paylaşıldı!' });
       }
       
@@ -89,8 +89,8 @@ const AdminPanel = () => {
 
       // verileri yenile
       const [istYanit, habYanit] = await Promise.all([
-        axios.get('http://localhost:5000/api/admin/istatistikler'),
-        axios.get('http://localhost:5000/api/haberler')
+        axios.get('/api/admin/istatistikler'),
+        axios.get('/api/haberler')
       ]);
       setIstatistikler(istYanit.data);
       setHaberler(habYanit.data);
@@ -119,7 +119,7 @@ const AdminPanel = () => {
   const haberiSil = async (id) => {
     if (!window.confirm('Bu haberi silmek istediğinize emin misiniz?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/haberler/${id}`);
+      await axios.delete(`/api/haberler/${id}`);
       setHaberler(haberler.filter(h => h.id !== id));
       setMesaj({ tip: 'basari', icerik: 'Haber silindi.' });
     } catch (hata) {
@@ -130,7 +130,7 @@ const AdminPanel = () => {
   const yaziyiSil = async (id) => {
     if (!window.confirm('Bu köşe yazısını silmek istediğinize emin misiniz?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/kose-yazilari/${id}`);
+      await axios.delete(`/api/kose-yazilari/${id}`);
       setKoseYazilari(koseYazilari.filter(y => y.id !== id));
       setMesaj({ tip: 'basari', icerik: 'Yazı silindi.' });
     } catch (hata) {
@@ -141,11 +141,11 @@ const AdminPanel = () => {
   const handleSubmitMedya = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/admin/medya-ekle', medyaForm);
+      await axios.post('/api/admin/medya-ekle', medyaForm);
       setMesaj({ tip: 'basari', icerik: 'Medya başarıyla eklendi!' });
       setMedyaForm({ baslik: '', video_id: '' });
       // medyaları yenile
-      const yanit = await axios.get('http://localhost:5000/api/medya');
+      const yanit = await axios.get('/api/medya');
       setMedyalar(yanit.data);
     } catch (hata) {
       setMesaj({ tip: 'hata', icerik: 'Medya ekleme hatası.' });
@@ -155,7 +155,7 @@ const AdminPanel = () => {
   const medyaSil = async (id) => {
     if (!window.confirm('Bu medyayı silmek istediğinize emin misiniz?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/admin/medya/${id}`);
+      await axios.delete(`/api/admin/medya/${id}`);
       setMedyalar(medyalar.filter(m => m.id !== id));
       setMesaj({ tip: 'basari', icerik: 'Medya silindi.' });
     } catch (hata) {

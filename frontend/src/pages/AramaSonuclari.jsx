@@ -15,7 +15,7 @@ const AramaSonuclari = () => {
       if (!sorguParametresi) return;
       setYukleniyor(true);
       try {
-        const yanit = await axios.get(`http://localhost:5000/api/arama?q=${encodeURIComponent(sorguParametresi)}`);
+        const yanit = await axios.get(`/api/arama?q=${encodeURIComponent(sorguParametresi)}`);
         setHaberler(yanit.data);
       } catch (hata) {
         console.error('arama sonuçları yüklenemedi:', hata);

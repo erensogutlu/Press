@@ -22,8 +22,8 @@ const Anasayfa = () => {
     const verileriGetir = async (ilkYukleme = false) => {
       try {
         const [haberYaniti, koseYaniti] = await Promise.all([
-          axios.get('http://localhost:5000/api/haberler'),
-          axios.get('http://localhost:5000/api/kose-yazilari')
+          axios.get('/api/haberler'),
+          axios.get('/api/kose-yazilari')
         ]);
         
         // eğer yeni haber varsa ve giriş yapılmışsa bildirim göster

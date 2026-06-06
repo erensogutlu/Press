@@ -21,7 +21,7 @@ const KategoriSayfasi = () => {
     const kategoriHaberleriGetir = async () => {
       setYukleniyor(true);
       try {
-        const yanit = await axios.get(`http://localhost:5000/api/haberler/kategori/${slug}`);
+        const yanit = await axios.get(`/api/haberler/kategori/${slug}`);
         setHaberler(yanit.data);
       } catch (hata) {
         console.error('kategori haberleri yüklenemedi:', hata);

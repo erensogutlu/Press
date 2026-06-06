@@ -11,7 +11,7 @@ const KoseYazilari = () => {
   useEffect(() => {
     const yazilariGetir = async () => {
       try {
-        const yanit = await axios.get('http://localhost:5000/api/kose-yazilari');
+        const yanit = await axios.get('/api/kose-yazilari');
         setYazilar(yanit.data);
       } catch (hata) {
         console.error('köşe yazıları yüklenemedi:', hata);

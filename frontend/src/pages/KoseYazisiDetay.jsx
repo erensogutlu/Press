@@ -12,7 +12,7 @@ const KoseYazisiDetay = () => {
   useEffect(() => {
     const yaziDetayiGetir = async () => {
       try {
-        const yanit = await axios.get(`http://localhost:5000/api/kose-yazilari/${id}`);
+        const yanit = await axios.get(`/api/kose-yazilari/${id}`);
         setYazi(yanit.data);
       } catch (hata) {
         console.error('yazı detayı yüklenemedi:', hata);

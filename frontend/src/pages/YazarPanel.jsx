@@ -19,7 +19,7 @@ const YazarPanel = () => {
     const yazilariGetir = async () => {
       if (kullanici) {
         try {
-          const yanit = await axios.get(`http://localhost:5000/api/yazar/yazilar/${kullanici.id}`);
+          const yanit = await axios.get(`/api/yazar/yazilar/${kullanici.id}`);
           setYazilarim(yanit.data);
         } catch (hata) {
           console.error('yazılar yüklenemedi:', hata);
@@ -39,10 +39,10 @@ const YazarPanel = () => {
 
     try {
       if (duzenlemeModu) {
-        await axios.put(`http://localhost:5000/api/kose-yazilari/${duzenlenenId}`, { baslik, icerik });
+        await axios.put(`/api/kose-yazilari/${duzenlenenId}`, { baslik, icerik });
         setDurum({ tip: 'basari', mesaj: 'Yazınız başarıyla güncellendi!' });
       } else {
-        await axios.post('http://localhost:5000/api/yazar/yazi-paylas', {
+        await axios.post('/api/yazar/yazi-paylas', {
           baslik,
           icerik,
           yazar_id: kullanici.id 
@@ -55,7 +55,7 @@ const YazarPanel = () => {
       setDuzenlenenId(null);
       
       // yazıları yenile
-      const yanit = await axios.get(`http://localhost:5000/api/yazar/yazilar/${kullanici.id}`);
+      const yanit = await axios.get(`/api/yazar/yazilar/${kullanici.id}`);
       setYazilarim(yanit.data);
     } catch (hata) {
       setDurum({ tip: 'hata', mesaj: 'İşlem sırasında bir hata oluştu.' });

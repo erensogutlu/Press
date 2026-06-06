@@ -12,7 +12,7 @@ const HaberDetay = () => {
   useEffect(() => {
     const haberDetayiGetir = async () => {
       try {
-        const yanit = await axios.get(`http://localhost:5000/api/haberler/${id}`);
+        const yanit = await axios.get(`/api/haberler/${id}`);
         setHaber(yanit.data);
       } catch (hata) {
         console.error('haber detayı yüklenemedi:', hata);

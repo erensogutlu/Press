@@ -16,7 +16,7 @@ const Giris = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const yanit = await axios.post('http://localhost:5000/api/giris', { eposta, sifre });
+      const yanit = await axios.post('/api/giris', { eposta, sifre });
       giris(yanit.data);
       navigate('/');
     } catch (hata) {
